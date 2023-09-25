@@ -1,4 +1,4 @@
-all: MPI1Proc4 ring MPI2Send16
+all: MPI1Proc4 ring MPI2Send16 MPI3Coll10
 
 MPI1Proc4: MPI1Proc4.c
 	./mpicc ./MPI1Proc4.c -o MPI1Proc4
@@ -8,6 +8,9 @@ ring: ring.c
 
 MPI2Send16: MPI2Send16.c
 	./mpicc ./MPI2Send16.c -o MPI2Send16
+
+MPI3Coll10: MPI3Coll10.c
+	./mpicc ./MPI3Coll10.c -o MPI3Coll10
 
 clean:
 	rm MPI1Proc4 ring MPI2Send16
