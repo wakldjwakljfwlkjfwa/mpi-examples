@@ -12,5 +12,8 @@ MPI2Send16: MPI2Send16.c
 MPI3Coll10: MPI3Coll10.c
 	./mpicc ./MPI3Coll10.c -o MPI3Coll10
 
+mat2vec: mat2vec.c
+	./mpicc ./mat2vec.c -o mat2vec
+
 clean:
 	rm MPI1Proc4 ring MPI2Send16
