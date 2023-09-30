@@ -24,8 +24,18 @@ int main(int argc, char *argv[]) {
     result += mat_part[i] * vec[i];
   }
 
-  printf("Process %d | result = %d\n", rank, result);
+  int *mat_result = malloc(size * sizeof(int));
+  MPI_Allgather(&result, 1, MPI_INT, mat_result, 1, MPI_INT, MPI_COMM_WORLD);
 
+  if (rank == 0) {
+    printf("Result is: [");
+    for (int i = 0; i < size; i++) {
+      printf("%d ", mat_result[i]);
+    }
+    printf("]\n");
+  }
+
+  free(mat_result);
   free(vec);
   free(mat_part);
 
