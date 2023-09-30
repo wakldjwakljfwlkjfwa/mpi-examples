@@ -9,29 +9,25 @@ int main(int argc, char *argv[]) {
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
   MPI_Comm_size(MPI_COMM_WORLD, &size);
 
-  int send_size = 4;
-  int *send_data = malloc(send_size * sizeof(int));
+  int *mat_part = malloc(size * sizeof(int));
+  for (int i = 0; i < size; i++) {
+    mat_part[i] = i + size * rank;
+  }
+  int n = rank + 1;
 
-  for (int i = 0; i < send_size; i++) {
-    send_data[i] = rank * send_size + i;
+  int *vec = malloc(size * sizeof(int));
+
+  MPI_Allgather(&n, 1, MPI_INT, vec, 1, MPI_INT, MPI_COMM_WORLD);
+
+  int result = 0;
+  for (int i = 0; i < size; i++) {
+    result += mat_part[i] * vec[i];
   }
 
-  int *recv_data = malloc(send_size * size * sizeof(int));
+  printf("Process %d | result = %d\n", rank, result);
 
-  MPI_Allgather(send_data, send_size, MPI_INT, recv_data, send_size, MPI_INT,
-                MPI_COMM_WORLD);
-
-  printf("Process %d:\n", rank);
-  for (int i = 0; i < send_size * size; i++) {
-    printf("%d\t", recv_data[i]);
-    if ((i + 1) % send_size == 0) {
-      printf("\n");
-    }
-  }
-  printf("\n");
-
-  free(recv_data);
-  free(send_data);
+  free(vec);
+  free(mat_part);
 
   MPI_Finalize();
   return EXIT_SUCCESS;
