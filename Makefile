@@ -12,6 +12,9 @@ MPI2Send16: MPI2Send16.c
 MPI3Coll10: MPI3Coll10.c
 	./mpicc ./MPI3Coll10.c -o MPI3Coll10
 
+MPI4Type14: MPI4Type14.c
+	./mpicc ./MPI4Type14.c -o MPI4Type14
+
 mat2vec: mat2vec.c
 	./mpicc ./mat2vec.c -o mat2vec
 
