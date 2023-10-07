@@ -1,4 +1,4 @@
-all: MPI1Proc4 ring MPI2Send16 MPI3Coll10 MPI4Type14 sem4 decart
+all: MPI1Proc4 ring MPI2Send16 MPI3Coll10 MPI4Type14 sem4 decart MPI5Comm14
 
 MPI1Proc4: MPI1Proc4.c
 	./mpicc ./MPI1Proc4.c -o MPI1Proc4
@@ -15,6 +15,9 @@ MPI3Coll10: MPI3Coll10.c
 MPI4Type14: MPI4Type14.c
 	./mpicc ./MPI4Type14.c -o MPI4Type14
 
+MPI5Comm14: MPI5Comm14.c
+	./mpicc ./MPI5Comm14.c -o MPI5Comm14
+
 mat2vec: mat2vec.c
 	./mpicc ./mat2vec.c -o mat2vec
 
@@ -25,4 +28,4 @@ decart: decart.c
 	./mpicc ./decart.c -o decart
 
 clean:
-	rm MPI1Proc4 ring MPI2Send16 MPI3Coll10 MPI4Type14 sem4 decart
+	rm MPI1Proc4 ring MPI2Send16 MPI3Coll10 MPI4Type14 sem4 decart MPI5Comm14
