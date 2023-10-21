@@ -31,8 +31,6 @@ int main(int argc, char *argv[]) {
 
   MPI_Bcast(filename, 50, MPI_CHAR, 0, MPI_COMM_WORLD);
 
-  printf("%s\n", filename);
-
   MPI_File file;
   MPI_File_open(MPI_COMM_WORLD, filename, MPI_MODE_CREATE | MPI_MODE_WRONLY,
                 MPI_INFO_NULL, &file);
